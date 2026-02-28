@@ -8,7 +8,6 @@ const HomePage = () => {
     <Layout title="Signup Page">
       <div className="signup">
         <h1>Mini Task Manager</h1>
-        <pre>{JSON.stringify(auth, null, 4)}</pre>
       </div>
     </Layout>
   );

@@ -18,22 +18,19 @@ const LoginPage = () => {
         email,
         password,
       });
-      if (res && res.data.success) {
-        setAuth(
-          {
-            ...auth,
-            user: res.data.user,
-            token: res.data.token,
-          },
-          [],
-        );
+      if (res.data.success) {
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/tasks");
       } else {
         alert(res.data.message);
       }
     } catch (error) {
-      console.log(error);
+      alert(error.response?.data?.message || "Something went wrong");
     }
   };
 
