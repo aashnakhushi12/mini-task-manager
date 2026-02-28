@@ -14,7 +14,8 @@ connectDB();
 const app = express();
 
 //routes
-//app.use('/api/v1/auth/auth_route');
+app.use(express.json());
+app.use("/", auth_route);
 
 //rest api
 app.get('/', (req, res) => {
