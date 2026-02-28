@@ -1,21 +1,24 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+import express from 'express';
+import dotenv from 'dotenv';
+import morgan from 'morgan';
+import connectDB from './config/db.js';
 
+
+//configure env
+dotenv.config();
+
+// database connection
+connectDB(); 
+//rest object
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
-
-const taskRoutes = require("./routes/taskRoutes");
-
-app.use("/api/tasks", taskRoutes);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+//rest api
+app.get('/', (req, res) => {
+    res.send('Hello World!');
 });
+
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+}); 
