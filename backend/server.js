@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
-import auth_route from './routes/auth_route.js';
+import route from './routes/route.js';
 
 
 //configure env
@@ -15,7 +15,7 @@ const app = express();
 
 //routes
 app.use(express.json());
-app.use("/", auth_route);
+app.use("/", route);
 
 //rest api
 app.get('/', (req, res) => {

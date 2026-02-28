@@ -141,3 +141,44 @@ export const deleteTaskController = async (req, res) => {
     });
   }
 };
+
+//search task
+
+
+export const searchTasksController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // validate ID
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Task ID is required",
+      });
+    }
+
+    // find task by ID
+    const task = await task_model.findById(id);
+
+    if (!task) {
+      return res.status(404).json({
+        success: false,
+        message: "Task not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Task fetched successfully",
+      task,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Error while fetching task",
+      error: error.message,
+    });
+  }
+};
