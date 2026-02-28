@@ -102,4 +102,5 @@ export const loginController = async(req, res) => {
 export const testcontroller = (req, res) => {
     res.send('Protected Routes')
 }
-    
+
+
