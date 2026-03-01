@@ -9,7 +9,7 @@ const AllTasksPage = () => {
 
   const getAllTasks = async () => {
     try {
-      const res = await axios.get("/tasks");
+      const res = await axios.get(`${process.env.REACT_APP_API}/tasks`);
       if (res.data.success) {
         setTasks(res.data.tasks);
       }
@@ -25,7 +25,7 @@ const AllTasksPage = () => {
   // DELETE TASK
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/tasks/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API}/tasks/${id}`, {
         headers: {
           Authorization: auth?.token, // ✅ NO "Bearer"
         },
@@ -58,7 +58,7 @@ const AllTasksPage = () => {
 
     try {
       await axios.put(
-        `/tasks/${task._id}`,
+        `${process.env.REACT_APP_API}/tasks/${task._id}`,
         {
           title: newTitle,
           description: newDescription,
@@ -98,7 +98,7 @@ const AllTasksPage = () => {
 
     try {
       await axios.post(
-        "/tasks",
+        `${process.env.REACT_APP_API}/tasks`,
         {
           title,
           description,

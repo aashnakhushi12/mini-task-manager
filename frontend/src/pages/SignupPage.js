@@ -13,7 +13,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/signup", {
+      const res = await axios.post(`${process.env.REACT_APP_API}/signup`, {
         name,
         email,
         password,
